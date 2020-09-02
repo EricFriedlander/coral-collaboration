@@ -1,11 +1,7 @@
-function MarioBioAnalysisv1(knn,numyears,spec) 
-% I have this written as a function but if you'd just like to take and 
-% use bits and pieces you can just delete the first line and the "end"
-% at the bottom. If you'd like to just run the function but knn=0 if you'd
-% like to use linear interpolation to fit missing data or knn > 0 to use
-% k-nearest neighbors. Set numyears to be the number of years you'd like to
-% inlude if doing linear interpolation and spec = 'P', 'S', or 'Both'
-% depending on what species you'd like to look at
+% Use knn=0 if you'd like to use linear interpolation to fit missing data 
+% or knn > 0 to use k-nearest neighbors. Set numyears to be the number of 
+% years you'd like to inlude if doing linear interpolation and 
+% spec = 'P', 'S', or 'Both' depending on what species you'd like to look at
 
 knn =0;
 numyears = 30;
@@ -57,8 +53,8 @@ plot([1954 1954],[0 70],'LineWidth',2,'Color',[1,0,0])
 fig = gcf;
 set(gcf, 'Position', get(0, 'Screensize'));
 print(fig,'CoreLengths','-dpng');
+pause();
 hold off
-
 
 %% Handle Missing Data
 
@@ -141,6 +137,7 @@ curvdatSM(coresFilled,paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('RZPCA_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
+    pause();
 %% Last 30 Years PCA Analysis
 
 %The next four plots are PCA plots for each of the four metadata variables
@@ -155,7 +152,8 @@ scatplotSM(coresFilled,[],paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('ReefZonePCA_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-
+    pause();
+    
 paramstruct = struct('npcadiradd', 4, ...
                         'icolor', site(1:obs,:), ...
                         'isubpopkde', 1, ...
@@ -165,7 +163,8 @@ scatplotSM(coresFilled,[],paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('SitePCA_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-
+    pause();
+    
 paramstruct = struct('npcadiradd', 4, ...
                         'icolor', species(1:obs,:), ...
                         'isubpopkde', 1, ...
@@ -175,7 +174,8 @@ scatplotSM(coresFilled,[],paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('SpeciesPCA_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-
+    pause();
+    
 paramstruct = struct('npcadiradd', 4, ...
                         'icolor', transect(1:obs,:), ...
                         'isubpopkde', 1, ...
@@ -185,7 +185,7 @@ scatplotSM(coresFilled,[],paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('TransectPCA_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-
+    pause();
 %% Last 30 Years DWD Analysis
 
 %Separate IR and OR cores into separate data sets
@@ -208,6 +208,7 @@ scatplotSM(coresFilled,dwddir,paramstruct)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('ReefzoneDWD_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
+    pause();
  
 %  %This function runs the DiProPerimTest
 %  paramstruct = struct('npcadiradd', 3, ...
@@ -226,11 +227,10 @@ plot(years(1:numyears),dwddir)
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('DWDDir_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
+    pause();
     
 clf  
 plot(years(1:numyears),abs(dwddir))
 fig = gcf;
     set(gcf, 'Position', get(0, 'Screensize'));
     print(fig,strcat('DWDDirAbs_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-    
-end
