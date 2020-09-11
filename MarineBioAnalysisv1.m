@@ -210,18 +210,18 @@ fig = gcf;
     print(fig,strcat('ReefzoneDWD_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
     pause();
  
-%  %This function runs the DiProPerimTest
-%  paramstruct = struct('npcadiradd', 3, ...
-%                         'icolor',[1 0 0; 0 0 1], ...
-%                         'isubpopkde', 1, ...
-%                         'legendcellstr', {{'IR','OR'}}, ...
-%                         'mlegendcolor', [1 0 0; 0 0 1]);
-% [stat, pvalue, zscore] = DiProPermSM(ir,or,paramstruct);
-% fig = gcf;
-%     set(gcf, 'Position', get(0, 'Screensize'));
-%     print(fig,strcat('ReefzoneDiProDerm_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
-% 
-% clf
+ %This function runs the DiProPerimTest
+ paramstruct = struct('npcadiradd', 3, ...
+                        'icolor',[1 0 0; 0 0 1], ...
+                        'isubpopkde', 1, ...
+                        'legendcellstr', {{'IR','OR'}}, ...
+                        'mlegendcolor', [1 0 0; 0 0 1]);
+[stat, pvalue, zscore] = DiProPermSM(ir,or,paramstruct);
+fig = gcf;
+    set(gcf, 'Position', get(0, 'Screensize'));
+    print(fig,strcat('ReefzoneDiProDerm_Spec_',spec,num2str(numyears),'knn',num2str(knn)),'-dpng');
+
+clf
 %Plot the loading on the DWD Direction
 plot(years(1:numyears),dwddir)
 fig = gcf;
